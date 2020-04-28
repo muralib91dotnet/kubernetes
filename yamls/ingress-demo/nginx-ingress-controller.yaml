@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2020-04-23T21:39:59Z"
+  labels:
+    app: nginx-ingress
+    chart: nginx-ingress-1.36.2
+    component: controller
+    heritage: Tiller
+    release: mib-nginx-ingress
+  name: mib-nginx-ingress-controller
+  namespace: default
+  resourceVersion: "56626"
+  selfLink: /api/v1/namespaces/default/services/mib-nginx-ingress-controller
+  uid: ceb9d3f0-46fb-4469-ac38-8df1c79fcff3
+spec:
+  clusterIP: 10.104.73.118
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: http
+    nodePort: 31469
+    port: 80
+    protocol: TCP
+    targetPort: http
+  - name: https
+    nodePort: 31927
+    port: 443
+    protocol: TCP
+    targetPort: https
+  selector:
+    app: nginx-ingress
+    app.kubernetes.io/component: controller
+    release: mib-nginx-ingress
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.65.10
